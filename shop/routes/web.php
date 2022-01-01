@@ -23,5 +23,5 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::apiResource('/', ApiController::class);
+Route::apiResource('api', ApiController::class);
 

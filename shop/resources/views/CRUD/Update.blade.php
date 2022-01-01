@@ -7,8 +7,9 @@
     <title>更新</title>
 </head>
 <body>
-    <form name="input" action="/api/update/{{ $update ['id']}}" method="post">
+    <form name="input" action="/api/update/{{ $update ['id']}}">
     @csrf
+    @method('put')
     更新產品種類
     <input type="text" name="input_class">
     更新產品名稱

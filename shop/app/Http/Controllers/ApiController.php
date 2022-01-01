@@ -27,13 +27,13 @@ class ApiController extends Controller
     //新增
     public function create(Requeat $request)
     {
-        Shop::create([
-            'shop' => $request['input_class'], 
-            'name'=>$request['input_name'], 
-            'describe'=>$request['input_describe'], 
-            'quantity'=>$request['input_quantity'], 
-            'price'=>$request['input_price']
-        ]);
+        // Shop::create([
+        //     'shop' => $request['input_class'], 
+        //     'name'=>$request['input_name'], 
+        //     'describe'=>$request['input_describe'], 
+        //     'quantity'=>$request['input_quantity'], 
+        //     'price'=>$request['input_price']
+        // ]);
         return view ('Return.CreatReturn');
     }
 
@@ -62,15 +62,15 @@ class ApiController extends Controller
         // Shop::find($id)->where();
         // ['shop' => shop::all()];
         // return 'show';
-        Shop::create([
-            'class' => $request['input_class'], 
-            'name'=>$request['input_name'], 
-            'describe'=>$request['input_describe'], 
-            'quantity'=>$request['input_quantity'], 
-            'price'=>$request['input_price'],
-            'state'=>$request['input_state']
-        ]);
-        return view ('Return.CreatReturn');
+        // Shop::create([
+        //     'class' => $request['input_class'], 
+        //     'name'=>$request['input_name'], 
+        //     'describe'=>$request['input_describe'], 
+        //     'quantity'=>$request['input_quantity'], 
+        //     'price'=>$request['input_price'],
+        //     'state'=>$request['input_state']
+        // ]);
+        return 'show';
     }
 
     /**
@@ -112,6 +112,6 @@ class ApiController extends Controller
     public function destroy($id)
     {
         $flight = Shop::find($id)->delete();
-        return 'destory';
+        return view ('Return.Delete');
     }
 }
