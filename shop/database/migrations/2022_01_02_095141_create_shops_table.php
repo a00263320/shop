@@ -15,12 +15,12 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
+            $table->string('class');             //商品種類
             $table->string('name');              //商品名稱
             $table->string('photo')->nullable(); //商品圖片
             $table->string('describe');          //商品描述
             $table->char('quantity');            //商品數量
             $table->char('price');               //商品價格
-            $table->string('class');             //商品種類
             $table->string('state');             //上架/下架
             $table->timestamps();                //時間
         });
