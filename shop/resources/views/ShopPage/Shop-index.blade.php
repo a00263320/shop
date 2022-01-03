@@ -16,6 +16,7 @@
         <button type="submit" style="width:96px; height:50px;">新增商品</button>
     </form>
 
+
     <table>
         <thead>
             <tr>
