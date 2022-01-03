@@ -16,7 +16,7 @@ class ApiController extends Controller
     //總頁面
     public function index()
     {
-        return view ('Shop', ['shop' => Shop::all()]);
+        return view ('ShopPage.Shop-index', ['shop' => Shop::all()]);
     }
 
     /**
@@ -24,17 +24,10 @@ class ApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //新增
-    public function create(Requeat $request)
+    //新增產品頁面
+    public function create(Request $request)
     {
-        // Shop::create([
-        //     'shop' => $request['input_class'], 
-        //     'name'=>$request['input_name'], 
-        //     'describe'=>$request['input_describe'], 
-        //     'quantity'=>$request['input_quantity'], 
-        //     'price'=>$request['input_price']
-        // ]);
-        return view ('Return.CreatReturn');
+        return view ('CRUD.Create');
     }
 
     /**
@@ -44,10 +37,19 @@ class ApiController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    //
+    //新增產品的API
     public function store(Request $request)
     {
-        return 'store';
+        Shop::create([
+            'class'=>$request['input_class'],
+            'name'=>$request['input_name'],
+            'photo' => $request['input_photo'],
+            'describe'=>$request['input_describe'],
+            'quantity'=>$request['input_quantity'],
+            'price'=>$request['input_price'],
+            'state'=>$request['input_state']
+        ]);
+        return view ('Return.CreatReturn');
     }
 
     /**
@@ -56,21 +58,14 @@ class ApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // 查看單一商品
-    public function show(Request $request)
+    // 查看單一商品   不可以使用迴圈  因為只有單一資料
+    public function show($id)
     {
-        // Shop::find($id)->where();
-        // ['shop' => shop::all()];
-        // return 'show';
-        // Shop::create([
-        //     'class' => $request['input_class'], 
-        //     'name'=>$request['input_name'], 
-        //     'describe'=>$request['input_describe'], 
-        //     'quantity'=>$request['input_quantity'], 
-        //     'price'=>$request['input_price'],
-        //     'state'=>$request['input_state']
-        // ]);
-        return 'show';
+        //給一個字定義參數取得單筆資料陣列
+        $show = Shop::find($id);
+
+                              //定義一個參數給前端用=>上方自訂一參數
+        return view('ShopPage.Shop-show', ['show' => $show]);
     }
 
     /**
@@ -79,10 +74,12 @@ class ApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // 編輯單一商品
+    // 編輯單一商品   (更新產品頁頁面)
     public function edit($id)
     {
-        return 'edit';
+        $showup = Shop::find($id);
+
+        return view('CRUD.Update', ['showup'=>$showup]);
     }
 
     /**
@@ -92,14 +89,20 @@ class ApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // 更新商品
+    // 更新商品 API
     public function update(Request $request, $id)
     {
-        $flight = Shop::find($id);
-        SHhop::find($id)->update([
-            'shop' => $request['input_class'], ['input_name'], ['input_describe'], ['input_quantity'], ['input_price']
+        $reup = Shop::find($id);
+        Shop::find($id)->update([
+            'photo' => $request['input_photo'],
+            'class' => $request['input_class'],
+            'name' => $request['input_name'],
+            'describe' => $request['input_describe'],
+            'quantity' => $request['input_quantity'],
+            'price' => $request['input_price'],
+            'state' => $request['input_state']
         ]);
-        return 'update';
+        return view('Return.Update', ['reup'=>$reup]);
     }
 
     /**
