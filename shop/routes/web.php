@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\shop;
+use App\Models\Shop;
 use Facade\FlareClient\View;
 use Illuminate\Bus\UpdatedBatchJobCounts;
 use Illuminate\Contracts\View\View as ViewView;
@@ -23,5 +23,10 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::apiResource('api', ApiController::class);
+//Route::apiResource可以使用以下
+//index  store  show  update  destory
+
+//Route::resource可以使用以下
+//index  create  store  show  edit  update  destory
+Route::resource('api', ApiController::class);
 

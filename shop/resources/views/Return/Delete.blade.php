@@ -7,7 +7,7 @@
     <title>刪除商品</title>
 </head>
 <body>
-    <form name="input" action="/">
+    <form name="input" action="/api">
         @csrf
         @method('post')
         刪除商品成功

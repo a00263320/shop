@@ -7,9 +7,10 @@
     <title>商品更新</title>
 </head>
 <body>
-    <form action="/{{ $id }}" >
+    <form action="/api/{{ $reup ['id'] }}" >
     @csrf
     @method('put')
+    產品資訊更新成功
     <input type="submit" value="返回商品總覽">
     </form>
 </body>

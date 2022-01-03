@@ -7,18 +7,28 @@
     <title>新增</title>
 </head>
 <body>
-    <form name="input" action="/api/creat" method="get">
+    <form name="input" action="/api" method="post">
     @csrf
     輸入產品種類
     <input type="text" name="input_class">
+    <br>
     輸入產品名稱
     <input type="text" name="input_name">
+    <br>
+    上傳產品圖片
+    <input type="text" name="input_photo">
+    <br>
     輸入產品描述
     <input type="text" name="input_describe">
+    <br>
     輸入產品數量
     <input type="text" name="input_quantity">
+    <br>
     輸入產品價格
     <input type="text" name="input_price">
+    <br>
+    產品上架/下架
+    <input type="text" name="input_state">
 
     <input type="submit" value="確定新增">
     </form>
