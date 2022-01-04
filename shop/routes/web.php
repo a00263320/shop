@@ -12,6 +12,8 @@ use Illuminate\View\ViewFinderInterface;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use PhpParser\Node\Stmt\Return_;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\OperateController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,3 +32,14 @@ use App\Http\Controllers\ApiController;
 //index  create  store  show  edit  update  destory
 Route::resource('api', ApiController::class);
 
+Route::get('/search', [OperateController::class, 'search']);
+
+//state 頁面
+Route::get('/state/{id}', [OperateController::class, 'state']);
+//state API
+Route::post('/stateapi/{id}', [OperateController::class, 'stateapi']);
+
+//price 頁面
+Route::get('/pri-qua/{id}', [OperateController::class, 'price']);
+//price API
+Route::post('/pri-qua/{id}', [OperateController::class, 'priceapi']);
