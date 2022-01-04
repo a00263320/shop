@@ -16,7 +16,7 @@ class ApiController extends Controller
     //總頁面
     public function index()
     {
-        return view ('ShopPage.Shop-index', ['shop' => Shop::all()]);
+        return view('ShopPage.Shop-index', ['shop' => Shop::all()]);
     }
 
     /**
@@ -27,7 +27,7 @@ class ApiController extends Controller
     //新增產品頁面
     public function create(Request $request)
     {
-        return view ('CRUD.Create');
+        return view('CRUD.Create');
     }
 
     /**
@@ -41,15 +41,15 @@ class ApiController extends Controller
     public function store(Request $request)
     {
         Shop::create([
-            'class'=>$request['input_class'],
-            'name'=>$request['input_name'],
+            'class' => $request['input_class'],
+            'name' => $request['input_name'],
             'photo' => $request['input_photo'],
-            'describe'=>$request['input_describe'],
-            'quantity'=>$request['input_quantity'],
-            'price'=>$request['input_price'],
-            'state'=>$request['input_state']
+            'describe' => $request['input_describe'],
+            'quantity' => $request['input_quantity'],
+            'price' => $request['input_price'],
+            'state' => $request['input_state']
         ]);
-        return view ('Return.CreatReturn');
+        return view('Return.CreatReturn');
     }
 
     /**
@@ -79,7 +79,7 @@ class ApiController extends Controller
     {
         $showup = Shop::find($id);
 
-        return view('CRUD.Update', ['showup'=>$showup]);
+        return view('CRUD.Update', ['showup' => $showup]);
     }
 
     /**
@@ -102,7 +102,7 @@ class ApiController extends Controller
             'price' => $request['input_price'],
             'state' => $request['input_state']
         ]);
-        return view('Return.Update', ['reup'=>$reup]);
+        return view('Return.Update', ['reup' => $reup]);
     }
 
     /**
@@ -115,6 +115,6 @@ class ApiController extends Controller
     public function destroy($id)
     {
         $flight = Shop::find($id)->delete();
-        return view ('Return.Delete');
+        return view('Return.Delete');
     }
 }
