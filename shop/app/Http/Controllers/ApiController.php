@@ -14,9 +14,26 @@ class ApiController extends Controller
      */
 
     //總頁面
-    public function index()
+    public function index(Request $request)
     {
-        return view('ShopPage.Shop-index', ['shop' => Shop::all()]);
+        //where放在get()或是all()後面就是方法  會報錯
+        //where放在前面就是一ㄍ尋找迴圈
+        //where後面一訂要加get   要不然會整個資料庫在找資料
+        //like 後面的字串前後要加%  .  . 是連接字串的用法
+        if ($request['keyword']) {
+            $shop = Shop::where('class', 'like', '%' . $request['keyword'] . '%')
+                //orwhere  或者甚麼的搜尋
+                ->orwhere('name', 'like', '%' . $request['keyword'] . '%')
+                ->orwhere('price', 'like', '%' . $request['keyword'] . '%')
+                ->orwhere('quantity', 'like', '%' . $request['keyword'] . '%')
+                ->orwhere('state', 'like', '%' . $request['keyword'] . '%')
+                ->get();
+        }else{
+            $shop = Shop::all();
+        }
+
+        return view('ShopPage.Shop-index', ['shop'=>$shop]);
+        // return view('ShopPage.Shop-index', ['shop' => Shop::all()]);
     }
 
     /**
@@ -64,7 +81,7 @@ class ApiController extends Controller
         //給一個字定義參數取得單筆資料陣列
         $show = Shop::find($id);
 
-                              //定義一個參數給前端用=>上方自訂一參數
+        //定義一個參數給前端用=>上方自訂一參數
         return view('ShopPage.Shop-show', ['show' => $show]);
     }
 
@@ -116,5 +133,41 @@ class ApiController extends Controller
     {
         $flight = Shop::find($id)->delete();
         return view('Return.Delete');
+    }
+
+
+    public function search(Request $request)
+    {
+
+    }
+
+    public function state(Request $request, $id)
+    {
+
+        return view('Update.State', ['state' => Shop::find($id)]);
+    }
+
+    public function stateapi(Request $request, $id)
+    {
+        $stateapi = Shop::find($id);
+        Shop::find($id)->update([
+            'state' => $request['input_state']
+        ]);
+        return view('Return.State', ['stateapi' => $stateapi]);
+    }
+
+    public function price(Request $request, $id)
+    {
+        return view('Update.Pri-Qua', ['priqua' => Shop::find($id)]);
+    }
+
+    public function priceapi(Request $request, $id)
+    {
+        $priceapi = Shop::find($id);
+        Shop::find($id)->update([
+            'price' => $request['input_price'],
+            'quantity' => $request['input_quantity']
+        ]);
+        return view('Return.Pri-Qua', ['priquaapi' => $priceapi]);
     }
 }

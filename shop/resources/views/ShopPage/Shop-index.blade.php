@@ -17,10 +17,21 @@
         <button type="submit" style="width:96px; height:50px;">新增商品</button>
     </form>
 
-    <form name="input" action="/search" method="get">
-        <input type="text" name="input_search">
-        <input type="submit" value="產品搜尋">
+    <form action="/api" method="get">
+        <button type="submit" style="width:96px; height:50px;">返回商品總覽</button>
     </form>
+
+    <form action="/search" method="get">
+        <input type="text" name="keyword">
+        <button type="submit">搜尋產品</button>
+    </form>
+    <br>
+
+    產品分類查詢:
+    <a href="/search?keyword=滑鼠">滑鼠</a>
+    <a href="/search?keyword=鍵盤">鍵盤</a>
+    <a href="/search?keyword=螢幕">螢幕</a>
+
     <table>
         <thead>
             <tr>

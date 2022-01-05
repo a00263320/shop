@@ -13,6 +13,7 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use PhpParser\Node\Stmt\Return_;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\OperateController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,10 @@ use App\Http\Controllers\OperateController;
 |
 */
 
+// Route::get('/', UserController::class);
+
+
+
 //Route::apiResource可以使用以下
 //index  store  show  update  destory
 
@@ -32,14 +37,17 @@ use App\Http\Controllers\OperateController;
 //index  create  store  show  edit  update  destory
 Route::resource('api', ApiController::class);
 
-Route::get('/search', [OperateController::class, 'search']);
+//搜尋頁面
+Route::get('/search', [ApiController::class, 'index']);
 
 //state 頁面
-Route::get('/state/{id}', [OperateController::class, 'state']);
+Route::get('/state/{id}', [ApiController::class, 'state']);
 //state API
-Route::post('/stateapi/{id}', [OperateController::class, 'stateapi']);
+Route::post('/stateapi/{id}', [ApiController::class, 'stateapi']);
 
 //price 頁面
-Route::get('/pri-qua/{id}', [OperateController::class, 'price']);
+Route::get('/pri-qua/{id}', [ApiController::class, 'price']);
 //price API
-Route::post('/pri-qua/{id}', [OperateController::class, 'priceapi']);
+Route::post('/pri-qua/{id}', [ApiController::class, 'priceapi']);
+
+
