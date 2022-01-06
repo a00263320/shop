@@ -28,11 +28,11 @@ class ApiController extends Controller
                 ->orwhere('quantity', 'like', '%' . $request['keyword'] . '%')
                 ->orwhere('state', 'like', '%' . $request['keyword'] . '%')
                 ->get();
-        }else{
+        } else {
             $shop = Shop::all();
         }
 
-        return view('ShopPage.Shop-index', ['shop'=>$shop]);
+        return view('ShopPage.Shop-index', ['shop' => $shop]);
         // return view('ShopPage.Shop-index', ['shop' => Shop::all()]);
     }
 
@@ -138,7 +138,6 @@ class ApiController extends Controller
 
     public function search(Request $request)
     {
-
     }
 
     public function state(Request $request, $id)
