@@ -36,8 +36,20 @@ Route::get('/sign', [UserController::class, 'sign']);
 //新增使用者 API
 Route::post('/sign-api', [UserController::class, 'signapi']);
 
-Route::get('/test', [UserController::class, 'test']);
-Route::get('/testapi', [UserController::class, 'testapi']);
+Route::get('/test', function(Request $request){
+    // $shop = Shop::find($id);
+    // $class = $shop->first('class');
+    // $name = $shop->first('name');
+    // $photo = $shop->first('photo');
+    // $describe = $shop->first('describe');
+
+    // return view('test', ['shop' => $test]);
+
+    return view('test');
+    // ['shop'=>$shop, 'name'=>$name, 'class'=>$class,
+    // 'photo'=>$photo, 'describe'=>$describe]);
+
+});
 
 
 //Route::apiResource可以使用以下
@@ -45,24 +57,24 @@ Route::get('/testapi', [UserController::class, 'testapi']);
 
 //Route::resource可以使用以下
 //index  create  store  show  edit  update  destory
-Route::resource('api', ApiController::class);
-//把商店的頁面鎖起來，一定要登入才可以顯示
-Route::middleware('auth')->get('/api', function () {
+//把商店的頁面使用middleware  auth鎖起來，一定要登入才可以顯示
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('api', ApiController::class);
+    //搜尋頁面
+    Route::get('/search', [ApiController::class, 'index']);
+
+    //state 頁面
+    Route::get('/state/{id}', [ApiController::class, 'state']);
+    //state API
+    Route::post('/stateapi/{id}', [ApiController::class, 'stateapi']);
+
+    //price 頁面
+    Route::get('/pri-qua/{id}', [ApiController::class, 'price']);
+    //price API
+    Route::post('/pri-qua/{id}', [ApiController::class, 'priceapi']);
 });
 
-//搜尋頁面
-Route::get('/search', [ApiController::class, 'index']);
-
-//state 頁面
-Route::get('/state/{id}', [ApiController::class, 'state']);
-//state API
-Route::post('/stateapi/{id}', [ApiController::class, 'stateapi']);
-
-//price 頁面
-Route::get('/pri-qua/{id}', [ApiController::class, 'price']);
-//price API
-Route::post('/pri-qua/{id}', [ApiController::class, 'priceapi']);
 
 
 
-Route::get('/test', [TestController::class, 'test']);
+
