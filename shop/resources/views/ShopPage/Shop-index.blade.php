@@ -21,8 +21,12 @@
         <button type="submit" style="width:96px; height:50px;">返回商品總覽</button>
     </form>
 
+    <form action="/" method="get">
+        <button type="submit" style="width:96px; height:50px;">登出</button>
+    </form>
+
     <form action="/search" method="get">
-        <input type="text" name="keyword">
+        <input type="text" placeholder="關鍵字" name="keyword">
         <button type="submit">搜尋產品</button>
     </form>
     <br>
