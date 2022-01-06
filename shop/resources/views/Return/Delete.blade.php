@@ -11,7 +11,7 @@
         @csrf
         @method('post')
         刪除商品成功
-    <input type="submit" value="返回商品總覽">
+    <input type="submit" value="返回商品資訊">
     </form>
 </body>
 </html>

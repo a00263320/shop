@@ -7,7 +7,7 @@
     <title>新增</title>
 </head>
 <body>
-    <form name="input" action="/login/api" method="post">
+    <form name="input" action="/api" method="post">
     @csrf
     輸入產品種類
     <input type="text" name="input_class">

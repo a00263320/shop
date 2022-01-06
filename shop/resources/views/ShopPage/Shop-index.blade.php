@@ -17,15 +17,15 @@
 
     <form action="/api/create" method="get">
         @csrf
-        <button type="submit" style="width:96px; height:50px;">新增商品</button>
+        <button type="submit" style="width:115px; height:50px;">新增商品</button>
     </form>
 
     <form action="/api" method="get">
-        <button type="submit" style="width:96px; height:50px;">返回商品總覽</button>
+        <button type="submit" style="width:115px; height:50px;">返回商品總覽</button>
     </form>
 
     <form action="/" method="get">
-        <button type="submit" style="width:96px; height:50px;">登出</button>
+        <button type="submit" style="width:115px; height:50px;">登出</button>
     </form>
 
     <form action="/search" method="get">
@@ -39,8 +39,31 @@
     <a href="/search?keyword=鍵盤">鍵盤</a>
     <a href="/search?keyword=螢幕">螢幕</a>
 
-    <table>
-        <thead>
+    <div id="accordion-faq" class="collapse-style-1 cillapse-style-4" role="tablist" aria-multiselectable="ture">
+        {{-- 使用Bootstrap  card變成卡片式寫法 --}}
+        @foreach ($shop as $shoplist)
+        {{-- 使迴圈跑card能夠並排 --}}
+        {{-- style="float:left; display:inline" --}}
+        <div class="wrap"  style="width:300px; height:600px;float:left; display:inline" >
+            <div class="col-sm-6">
+                <div class="card" style="width: 18rem; height: 35rem">
+                    <img src="{{ $shoplist['photo'] }}" style="width: 100; height: 230px" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" color="red">{{ $shoplist['name'] }}</h5>
+                        <p class="card-textarea">{{ $shoplist['describe'] }}</p>
+                        <a href="/api/{{ $shoplist['id'] }}" class="btn btn-primary">檢視產品資訊</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            </div>
+
+        @endforeach
+    </div>
+    {{-- <table> --}}
+
+        {{-- <thead>
             <tr>
                 <th>商品種類</th>
                 <th>商品圖片</th>
@@ -55,15 +78,15 @@
 
         @foreach ($shop as $shoplist)
             {{-- 給後端用 as 給下方用 --}}
-            <tr>
+            {{-- <tr>
 
                 <td align="center">{{ $shoplist['class'] }}</td>
                 {{-- 讀取資料庫照片網址 --}}
-                <td><img src="{{ $shoplist['photo'] }}" width="120" heigh="80"></td>
+                {{-- <td><img src="{{ $shoplist['photo'] }}" width="120" heigh="80"></td> --}}
                 {{-- align="center"->置中 --}}
-                <td align="center">{{ $shoplist['name'] }}</td>
+                {{-- <td align="center">{{ $shoplist['name'] }}</td> --}}
                 {{-- 調整顯示大小 --}}
-                <td width="500">{{ $shoplist['describe'] }}</td>
+                {{-- <td width="500">{{ $shoplist['describe'] }}</td>
                 <td align="center">{{ $shoplist['price'] }}</td>
                 <td align="center">{{ $shoplist['quantity'] }}</td>
                 <td align="center">{{ $shoplist['state'] }}</td>
@@ -75,14 +98,14 @@
                     <form action="/api/{{ $shoplist['id'] }}" method="post">
                         @csrf
                         @method('delete')
-                        <button type="submit" style="width:96px; height:20px;">刪除</button>
+                        <button type="submit" style="width:96px; height:20px;">刪除</button> --}}
                         {{-- style->改變外觀 --}}
-                    </form>
+                    {{-- </form>
                 </td>
             </tr>
-        @endforeach
+        @endforeach --}}
 
-    </table>
+    {{-- </table> --}}
 </body>
 
 </html>

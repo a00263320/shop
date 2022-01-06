@@ -11,7 +11,7 @@
         @csrf
         @method('put')
         產品資訊更新成功
-        <input type="submit" value="返回商品總覽">
+        <input type="submit" value="返回商品資訊">
         </form>
 </body>
 </html>

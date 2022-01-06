@@ -54,6 +54,13 @@
                 <form action="/state/{{$show['id']}}" method="get">
                     <button type="submit" style="width:130px; height:25px">更新產品上/下架</button>
                 </form>
+
+                <form action="/api/{{ $show['id'] }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" style="width:130px; height:25px;">刪除</button>
+                    {{-- style->改變外觀 --}}
+                </form>
             </td>
 
 

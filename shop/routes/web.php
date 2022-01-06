@@ -37,17 +37,9 @@ Route::get('/sign', [UserController::class, 'sign']);
 Route::post('/sign-api', [UserController::class, 'signapi']);
 
 Route::get('/test', function(Request $request){
-    // $shop = Shop::find($id);
-    // $class = $shop->first('class');
-    // $name = $shop->first('name');
-    // $photo = $shop->first('photo');
-    // $describe = $shop->first('describe');
+    $test = Shop::all();
 
-    // return view('test', ['shop' => $test]);
-
-    return view('test');
-    // ['shop'=>$shop, 'name'=>$name, 'class'=>$class,
-    // 'photo'=>$photo, 'describe'=>$describe]);
+    return view('test', ['test'=>$test]);
 
 });
 
