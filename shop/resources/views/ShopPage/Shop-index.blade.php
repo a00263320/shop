@@ -10,29 +10,31 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
-        {{-- 網頁背景 --}}
-<body>
-    <h1>商店總覽</h1>
-    <br>
+<body><nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <h1>商店總覽</h1>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-    <form action="/api/create" method="get">
-        @csrf
-        <button type="submit" style="width:115px; height:50px;">新增商品</button>
-    </form>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/api">商品總覽</a>
+                </li>
 
-    <form action="/api" method="get">
-        <button type="submit" style="width:115px; height:50px;">返回商品總覽</button>
-    </form>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/api/create">新增商品</a>
+                </li>
 
-    <form action="/" method="get">
-        <button type="submit" style="width:115px; height:50px;">登出</button>
-    </form>
-
-    <form action="/search" method="get">
-        <input type="text" placeholder="關鍵字" name="keyword">
-        <button type="submit">搜尋產品</button>
-    </form>
-    <br>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">登出</a>
+                </li>
+            </ul>
+            <form class="d-flex" action="/search" method="get">
+                <input class="form-control me-2" type="Search" placeholder="關鍵字" name="keyword">
+                <button class="btn btn-outline-success  btn-sm" type="submit">搜尋產品</button>
+            </form>
+        </div>
+    </div>
+</nav>
 
     產品分類查詢:
     <a href="/search?keyword=滑鼠">滑鼠</a>
@@ -47,11 +49,13 @@
         <div class="wrap"  style="width:300px; height:600px;float:left; display:inline" >
             <div class="col-sm-6">
                 <div class="card" style="width: 18rem; height: 35rem">
-                    <img src="{{ $shoplist['photo'] }}" style="width: 100; height: 230px" class="card-img-top" alt="...">
+                    <img src="{{ $shoplist['photo'] }}" style="width: 50; height: 200px" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title" color="red">{{ $shoplist['name'] }}</h5>
                         <p class="card-textarea">{{ $shoplist['describe'] }}</p>
-                        <a href="/api/{{ $shoplist['id'] }}" class="btn btn-primary">檢視產品資訊</a>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/api/{{$shoplist ['id']}}" class="btn btn-primary">檢視產品資訊</a>
                     </div>
                 </div>
                 </div>
